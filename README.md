@@ -1,92 +1,227 @@
-# Academic Performance Management System (APMS) 📊
+# Sistema de Gerenciamento de Notas Acadêmicas 📊
 
-![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)
-![Code Style](https://img.shields.io/badge/code%20style-PEP%208-orange)
-![Environment](https://img.shields.io/badge/Environment-CLI-lightgrey)
-![License](https://img.shields.io/badge/License-MIT-green)
-
-Este projeto consiste em um sistema em linha de comando (CLI) focado no registro, processamento e monitoramento do desempenho acadêmico de estudantes. A aplicação foi projetada sob os princípios da engenharia de software moderna, priorizando a modularidade, legibilidade e manutenibilidade do código.
+Sistema desenvolvido em Python para gerenciamento e processamento de notas acadêmicas via terminal (CLI). O projeto foi estruturado seguindo boas práticas de engenharia de software, modularização de código e validação automatizada com testes unitários.
 
 ---
 
-## 🎯 Arquitetura & Padrões de Projeto
+# 📌 Objetivo do Projeto
 
-A aplicação foi estruturada seguindo rigorosamente os seguintes pilares técnicos:
+O sistema permite:
 
-* **Princípio da Responsabilidade Única (SRP):** Cada componente e função do sistema possui uma única razão para mudar. As rotinas de cálculo matemático estão completamente isoladas da camada de apresentação (I/O).
-* **Guia de Estilo PEP 8:** Todo o ecossistema de código adota as convenções oficiais do Python, incluindo nomenclatura em `snake_case` para funções/variáveis, espaçamento vertical padronizado e documentação interna por meio de docstrings estruturadas (padrão Google/Docstring).
-* **Defesa contra Falhas (*Edge Cases*):** Implementação de travas lógicas preventivas para mitigar erros em tempo de execução, como o tratamento de listas vazias para evitar exceções de divisão por zero (`ZeroDivisionError`).
+- Cadastro estruturado de estudantes e notas;
+- Cálculo automático de médias;
+- Verificação de aprovação ou reprovação;
+- Geração de relatórios formatados;
+- Execução de testes automatizados para validação das regras de negócio.
+
+O projeto foi desenvolvido com foco em:
+
+- Legibilidade;
+- Organização modular;
+- Tratamento de casos extremos (*edge cases*);
+- Confiabilidade do sistema.
 
 ---
 
-## 🏗️ Estrutura de Dados na Memória
+# 🛠️ Tecnologias Utilizadas
 
-Para garantir a acessibilidade e flexibilidade das informações sem a necessidade de persistência em banco de dados nesta etapa, o sistema utiliza uma coleção acoplada de **listas e dicionários (`List[Dict[str, Any]]`)**:
+- Python 3.8+
+- Biblioteca nativa `unittest`
+- Programação estruturada
+- Terminal/CLI
+
+---
+
+# 📂 Estrutura do Projeto
+
+```bash
+📦 sistema-gerenciamento-notas
+ ┣ 📜 gerenciador_notas.py
+ ┣ 📜 test_notas.py
+ ┗ 📜 README.md
+```
+
+---
+
+# ⚙️ Funcionalidades
+
+## ✅ Cálculo de Média
+
+A função `calcular_media()` realiza o cálculo da média aritmética das notas do estudante.
+
+### Exemplo:
 
 ```python
-[
-    {
-        "nome": "Nome do Estudante",
-        "notas": [float, float, float]
-    }
-]
+notas = [8.0, 7.0, 9.0]
+media = calcular_media(notas)
+print(media)
+```
+
+### Saída:
+
+```bash
+8.0
+```
 
 ---
 
-## 📁 Módulos e Funções do Core
+## ✅ Verificação de Aprovação
 
-O motor lógico do sistema é composto pelas seguintes rotinas independentes:
+A função `verificar_aprovacao()` valida a situação final do aluno com base na média mínima institucional.
 
-| Função | Parâmetros | Retorno | Descrição |
-| :--- | :--- | :--- | :--- |
-| `calcular_media` | `notas` (list) | `float` | Calcula a média aritmética. Retorna `0.0` se a lista estiver vazia. |
-| `verificar_aprovacao` | `media` (float), `media_minima` (float) | `str` | Compara a média com a nota de corte. Retorna 'Aprovado' ou 'Reprovado'. |
-| `gerar_relatorio` | `alunos` (list) | `None` | Varre a lista, consome as funções acima e renderiza a tabela gerencial. |
+### Regra padrão:
+
+- Média maior ou igual a `7.0` → **Aprovado**
+- Média menor que `7.0` → **Reprovado**
+
+### Exemplo:
+
+```python
+resultado = verificar_aprovacao(7.5)
+print(resultado)
+```
+
+### Saída:
+
+```bash
+Aprovado
+```
 
 ---
 
-💻 Pré-requisitos e Ambiente
-A aplicação foi desenvolvida de forma nativa, eliminando a necessidade de gerenciadores de pacotes externos (pip).
+## ✅ Relatório Acadêmico
 
-Interpretador: Python 3.8 ou superior instalado.
+O sistema gera um relatório formatado no terminal contendo:
 
-Dependências: Apenas módulos nativos do ecossistema Python (unittest, random).
+- Nome do estudante;
+- Média final;
+- Situação acadêmica.
+
+### Exemplo de saída:
+
+```bash
+=======================================================
+         RELATÓRIO DE DESEMPENHO ACADÊMICO
+=======================================================
+Estudante           | Média Final | Situação
+-------------------------------------------------------
+Ana Silva           | 8.17        | ✨ Aprovado
+Bruno Santos        | 5.33        | ❌ Reprovado
+=======================================================
+```
 
 ---
 
-🚀 Instruções de Execução
-1. Clonar o Repositório
-Abra o seu terminal e clone este projeto para a sua máquina local:
+# 🧪 Testes Automatizados
 
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-cd seu-repositorio
+O projeto utiliza o framework nativo `unittest` para garantir estabilidade e confiabilidade das regras de negócio.
 
-2. Executar a Aplicação Principal
-Para rodar o motor do sistema e visualizar a renderização do relatório gerencial no terminal, execute:
+## Casos testados
 
+### Happy Paths
+
+- Cálculo de média padrão;
+- Aprovação com média acima da nota mínima;
+- Reprovação abaixo da média exigida.
+
+### Edge Cases
+
+- Lista de notas vazia;
+- Média mínima configurada como `0.0`.
+
+---
+
+# ▶️ Como Executar o Projeto
+
+## 1️⃣ Clone o repositório
+
+```bash
+git clone https://github.com/SEU-USUARIO/sistema-gerenciamento-notas.git
+```
+
+---
+
+## 2️⃣ Acesse a pasta do projeto
+
+```bash
+cd sistema-gerenciamento-notas
+```
+
+---
+
+## 3️⃣ Execute o sistema
+
+```bash
+python gerenciador_notas.py
+```
+
+ou
+
+```bash
 python3 gerenciador_notas.py
+```
 
 ---
 
-🧪 Ambiente de Testes Unitários e Validação
-A confiabilidade das regras de negócio foi blindada utilizando a biblioteca nativa unittest. A matriz de testes cobre fluxos principais (Happy Paths) e cenários de exceção (Edge Cases).
+# 🧪 Como Executar os Testes
 
-Para disparar os ensaios automatizados de validação de código, execute o comando:
+```bash
+python -m unittest test_notas.py
+```
 
+ou
+
+```bash
 python3 -m unittest test_notas.py
-
-Cenários Cobertos na Suite de Testes:
-test_calcular_media_comum: Garante a precisão do cálculo matemático com floats tradicionais.
-
-test_verificar_aprovacao_comum / test_verificar_reprovacao_comum: Valida a assertividade da tomada de decisão na linha de corte (7.0).
-
-test_calcular_media_lista_vazia: Teste limite (Edge Case) que valida a resiliência do sistema ao processar alunos sem avaliações cadastradas.
-
-test_verificar_aprovacao_corte_zero: Valida a estabilidade do parâmetro padrão dinâmico da função diante de configurações extremas de negócio.
+```
 
 ---
 
-👩‍💻 Autora
-Desenvolvido por [Erica Serpa] como evidência técnica de engenharia de software e boas práticas de programação.
+# ✅ Resultado Esperado dos Testes
 
-LinkedIn: Seu Nome no LinkedIn
+```bash
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+```
+
+---
+
+# 🧠 Conceitos Aplicados
+
+- Modularização de código;
+- Single Responsibility Principle (SRP);
+- Tratamento de exceções;
+- Programação defensiva;
+- Testes unitários;
+- Estruturas de dados com listas e dicionários;
+- Boas práticas da PEP 8;
+- Documentação com Docstrings.
+
+---
+
+# 📖 Aprendizados
+
+Durante o desenvolvimento deste projeto foi possível aplicar conceitos fundamentais de engenharia de software, incluindo:
+
+- Organização lógica de sistemas;
+- Separação de responsabilidades;
+- Criação de testes automatizados;
+- Desenvolvimento orientado à confiabilidade;
+- Estruturação profissional de documentação técnica.
+
+---
+
+# 👨‍💻 Autor
+
+Projeto desenvolvido para fins acadêmicos na disciplina de Engenharia de Software / Programação em Python.
+
+---
+
+# 📜 Licença
+
+Este projeto possui finalidade educacional e acadêmica.
+
+
