@@ -12,14 +12,14 @@ O sistema permite:
 - Cálculo automático de médias;
 - Verificação de aprovação ou reprovação;
 - Geração de relatórios formatados;
-- Execução de testes automatizados para validação das regras de negócio.
+- Execução de testes automatizados para validação das regras de negócio;
 
 O projeto foi desenvolvido com foco em:
 
 - Legibilidade;
 - Organização modular;
 - Tratamento de casos extremos (*edge cases*);
-- Confiabilidade do sistema.
+- Confiabilidade do sistema;
 
 ---
 
@@ -95,7 +95,7 @@ O sistema gera um relatório formatado no terminal contendo:
 
 - Nome do estudante;
 - Média final;
-- Situação acadêmica.
+- Situação acadêmica;
 
 ### Exemplo de saída:
 
@@ -122,7 +122,7 @@ O projeto utiliza o framework nativo `unittest` para garantir estabilidade e con
 
 - Cálculo de média padrão;
 - Aprovação com média acima da nota mínima;
-- Reprovação abaixo da média exigida.
+- Reprovação abaixo da média exigida;
 
 ### Edge Cases
 
@@ -198,7 +198,7 @@ OK
 - Testes unitários;
 - Estruturas de dados com listas e dicionários;
 - Boas práticas da PEP 8;
-- Documentação com Docstrings.
+- Documentação com Docstrings;
 
 ---
 
@@ -210,7 +210,7 @@ Durante o desenvolvimento deste projeto foi possível aplicar conceitos fundamen
 - Separação de responsabilidades;
 - Criação de testes automatizados;
 - Desenvolvimento orientado à confiabilidade;
-- Estruturação profissional de documentação técnica.
+- Estruturação profissional de documentação técnica;
 
 ---
 
