@@ -136,7 +136,7 @@ O projeto utiliza o framework nativo `unittest` para garantir estabilidade e con
 ## 1️⃣ Clone o repositório
 
 ```bash
-git clone https://github.com/SEU-USUARIO/sistema-gerenciamento-notas.git
+git clone https://github.com/EricaSerpa/gerenciador-notas.git
 ```
 
 ---
